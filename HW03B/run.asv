@@ -11,11 +11,9 @@ mRate = 0.01;
 
 solution = geneticAlgorithm(set, popSize, gen, cRate, mRate);
 [set1,set2] = translation(solution, set);
-
+%%
 clc
-X = ['Set 1: [',num2str(set1), ']', '\n Sum: ',num2str(sum(set1)),'\n'];
-Y = ['Set 2: [',num2str(set2), ']', '\n Sum: ',num2str(sum(set2)),'\n'];
+X = ['Set 1: [',num2str(set),']','\n Sum: ',num2str(sum(set1)),'\n'];
+Y = ['Set 2: [',num2str(set),'\n Sum: ',num2str(sum(set1))];
 fprintf(X)
-fprintf(Y)
-
-fprintf(['Fitness:', num2str(abs(sum(set1)-sum(set2))),'\n'])
+%fprintf(Y)

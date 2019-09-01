@@ -1,0 +1,31 @@
+function solution = geneticAlgorithm(set, popSize, gen, cRate, mRate, seed)
+
+% Creates the initial population
+population = randi([0,1],popSize,length(set));
+fitness = evaluate(population,set);
+bFitness = -10000; % 
+
+% Runs the genetic algorithm process
+
+for i = 1:generations
+    % Selection - Crossover - New Population
+    k = 1;
+    tmpPopulation = zeros(popSize, length(set));
+    for j = 1:(popSize / 2)
+        parentA = select(3, population, fitness);
+        parentB = select(3, population, fitness);
+        offspring = crossover(parentA, parentB, cRate, randi(1000));
+        tmpPopulation(k:k+1,:) = offspring;
+        k = k + 2;
+    end
+    pop = tmpPopulation;
+    
+    % Mutation
+    for j = 1:populationSize
+        population(j, :) = mutate(population(j, :), mRate);
+    end
+    fitness = evaluate(population,set);
+    % Gets best individual so far
+    
+end
+end
