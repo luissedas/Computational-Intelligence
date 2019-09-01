@@ -1,9 +1,0 @@
-function solution = select(tournamentSize, population, fitness, seed)
-
-rng(seed)
-
-index = randperm(length(population)) % Gets a permutation of indexes
-index = index(1:tournamentSize) % Selects the first  
-
-
-end
