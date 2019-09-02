@@ -1,20 +1,25 @@
 function solution = geneticAlgorithm(N, popSize, gen, cRate, mRate)
 
-population = randi([0,1],popSize,3*(2^N-1+5)); % Initial population
-fitness = evaluate(N, population, popSize);    % Fitness of initial population
-bFitness = 0;                                  % Initial best fitness
+% To do:
+% penalizar Movimientos que no hacen nada
+% Considerar que ya se haya llegado a una solucion 
+nbits = 3*(2^N-1+5);
+
+population = randi([0,1],popSize,nbits);    % Initial population
+fitness = evaluate(N, population, popSize); % Fitness of initial population
+bFitness = 0;                               % Initial best fitness
  
 % Genetic Algorithm process
 for i = 1:gen
     % Selection -> Crossover -> New population
     k = 1;
-    tmpPopulation = zeros(popSize,3*(2^N-1));
+    tmpPopulation = zeros(popSize,nbits);
     for j = 1:(popSize /2)
-        parentA = select(3, population, fitness);
-        parentB = select(3, population, fitness);
+        parentA = select(3, population, popSize, fitness);
+        parentB = select(3, population, popSize, fitness);
         offspring = crossover(parentA, parentB, cRate);
         tmpPopulation(k:k+1,:) = offspring;
-        k = k + 2;
+        k = k + 2;  
     end
     population = tmpPopulation; % Replace generation
     

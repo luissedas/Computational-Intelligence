@@ -55,11 +55,11 @@ for j = 1:popSize
             ilegal = ilegal + legal_move(t2);
             
         end
-        %disp(['Movimiento ',num2str(i)+1,', Ilegal:',num2str(ilegal)])
+        disp(['Movimiento ',num2str(i)+1,', Ilegal:',num2str(ilegal)])
         %display(move)
-        %display([t1',t2',t3']);
+        display([t1',t2',t3']);
     end
-    t3(t3 == 30) = 0; 
+    t3(t3 == 30) = 0 
     fitness(j) = sum(t3) ;
 
 end

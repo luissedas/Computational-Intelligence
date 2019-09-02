@@ -1,8 +1,8 @@
-function solution = select(tournamentSize, population, fitness)
+function solution = select(tournamentSize, population, popSize, fitness)
 
 %rng(seed)
 
-index = randperm(length(population)); % Gets a permutation of indexes
+index = randperm(popSize); % Gets a permutation of indexes
 index = index(1:tournamentSize); % Selects tournamentSize elements
 
 [~,fit_index] = min(fitness(index));
