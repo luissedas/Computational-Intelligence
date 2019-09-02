@@ -6,7 +6,6 @@ fitness = evaluate(population,set);
 bFitness = 10000; % Initial best fitness
 
 % Runs the genetic algorithm process
-
 for i = 1:gen
     % Selection - Crossover - New Population
     k = 1;
