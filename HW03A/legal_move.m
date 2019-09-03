@@ -1,9 +1,9 @@
-function solution = legal_move(tower)
+function ilegal = legal_move(tower)
 
-if tower(1)>tower(2)
-    solution = 1;
+if (tower(1)>tower(2) && tower(2)~= 0)
+    ilegal = 1;
 else
-    solution = 0;
+    ilegal = 0;
 end
 
 end

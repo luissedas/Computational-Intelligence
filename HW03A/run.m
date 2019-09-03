@@ -10,6 +10,5 @@ gen = 100;      % number of generations
 cRate = 1.0;    % crossover rate
 mRate = 0.01;   % mutation rate
 %% Genetic Algorithm
-%solution = geneticAlgorithm(N, popSize, gen, cRate,mRate);
 solution = geneticAlgorithm(N, popSize, gen, cRate, mRate);
 

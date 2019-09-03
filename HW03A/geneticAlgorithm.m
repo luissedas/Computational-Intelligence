@@ -1,8 +1,6 @@
 function solution = geneticAlgorithm(N, popSize, gen, cRate, mRate)
 
-% To do:
-% penalizar Movimientos que no hacen nada
-% Considerar que ya se haya llegado a una solucion 
+ 
 nbits = 3*(2^N-1+5);
 
 population = randi([0,1],popSize,nbits);    % Initial population
