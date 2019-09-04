@@ -19,13 +19,17 @@ for j = 1:popSize
     
     ilegal = 0;                  % Ilegal moves
     useless_move = 0;            % Moves that do nothing
-    towers = [t1',t2',t3']; 
+    towers = [t1',t2',t3'];      % Initial towers state 
     
     % Change this for to while and have 2 conditions
     % 1. 0:length(ind)/3-1
     % 2. if fitness = sum(t3)
-    for i = 0:length(ind)/3-1
-
+    
+    %for i = 0:length(ind)/3-1
+    i = 0;
+    tmpFitness = 0;              % temporal fitness value
+    while (i<(length(ind)/3-1)) && (tmpFitness ~= sum(1:N))
+       
         move = ind(3*i+1:3*i+3); % 3 bit string
         
         if ((sum(move == [0 0 0]) == 3 || sum(move == [1 1 0]) == 3) && sum(t1) ~= 0)
@@ -72,16 +76,24 @@ for j = 1:popSize
             
         end
         %disp(['Movimiento ',num2str(i)+1,', Ilegal:',num2str(ilegal)])
-        %display(move)
-        %display([t1',t2',t3']);
+        display(move)
+        display([t1',t2',t3']);
         
         if sum([t1(1), t2(1), t3(1)] == towers(1,:)) == 3
             useless_move = useless_move + 1;
         end 
         towers = [t1',t2',t3'];
-        
+        tmpFitness = sum(t3)- ilegal - useless_move;
+        disp(['finess: ', num2str(tmpFitness),...
+            ', ilegal: ', num2str(ilegal),...
+            ', useless:', num2str(useless_move)]);
+        i = i + 1 ;
     end
     %t3(t3 == 30) = 0; 
     fitness(j) = sum(t3) ;
 
 end
+
+% Si dropeo los movimientos ilegales o  que no hacen nada y checo
+% secuencialmente el fitness y sale igual a sum(1:N) entonces esa es la
+% mejor solucion

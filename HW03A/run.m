@@ -12,3 +12,4 @@ mRate = 0.01;   % mutation rate
 %% Genetic Algorithm
 solution = geneticAlgorithm(N, popSize, gen, cRate, mRate);
 
+s = [0 0 1 0 0 0 1 0 1 0 0 1 0 1 0 0 1 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1];
