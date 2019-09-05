@@ -1,7 +1,7 @@
 function [solution,population] = geneticAlgorithm(N, popSize, gen, cRate, mRate)
 
  
-nbits = 3*(2^N-1+3);
+nbits = 3*(2^N-1+2);
 
 population = randi([0,1],popSize,nbits);    % Initial population
 fitness = evaluate(N, population, popSize); % Fitness of initial population
@@ -13,8 +13,8 @@ for i = 1:gen
     k = 1;
     tmpPopulation = zeros(popSize,nbits);
     for j = 1:(popSize /2)
-        parentA = select(3, population, popSize, fitness);
-        parentB = select(3, population, popSize, fitness);
+        parentA = select(5, population, popSize, fitness);
+        parentB = select(5, population, popSize, fitness);
         offspring = crossover(parentA, parentB, cRate);
         tmpPopulation(k, :) = offspring(1, :);
         k = k + 1;
@@ -36,6 +36,11 @@ for i = 1:gen
             solution = population(j,:);
         end
     end
+    %[~,b] = mink(fitness,round(popSize/10));
+    %for j = 1:round(popSize/10)
+    %    population(b(j),:) = solution;
+    %end
+    
 end
 
 end

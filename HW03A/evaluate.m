@@ -11,12 +11,12 @@ function [fitness] = evaluate(N, population, popSize)
 fitness = zeros(popSize,1);
 %%
 for j = 1:popSize
+    
     ind = population(j,:);       % Chromosome
     t1 = 1:N;                    % Tower 1
     t2 = zeros(1,length(t1));    % Tower 2
     t3 = zeros(1,length(t1));    % Tower 3
-    towers = [t1',t2',t3'];      % Initial towers state 
-    
+    towers = [t1',t2',t3'];      % Initial towers state
    
     % Change this for to while and have 2 conditions
     % 1. 0:length(ind)/3-1
@@ -27,8 +27,8 @@ for j = 1:popSize
     tmpFitness = 0;              % temporal fitness value
     d_old = 8346;
     d_new = 8374;
-    ilegal = 0;                  % Ilegal moves
-    useless_move = 0;            % Moves that do nothing
+%     ilegal = 0;                  % Ilegal moves
+%     useless_move = 0;            % Moves that do nothing
     bad_move = 0;
     
     while (i<=(length(ind)/3-1)) && (tmpFitness ~= sum(1:N))
@@ -39,7 +39,6 @@ for j = 1:popSize
             t2 = circshift(t2,1);
             t2(1) = t1(1);
             d_new = t1(1);
-            
             t1 = circshift(t1,-1); 
             t1(end) = 0;
 
@@ -47,7 +46,6 @@ for j = 1:popSize
             t3 = circshift(t3,1);
             t3(1) = t1(1);
             d_new = t1(1);
-            
             t1 = circshift(t1,-1); 
             t1(end) = 0;
    
@@ -55,7 +53,6 @@ for j = 1:popSize
             t1 = circshift(t1,1);
             t1(1) = t2(1);
             d_new = t2(1);
-            
             t2 = circshift(t2,-1); 
             t2(end) = 0;
     
@@ -63,7 +60,6 @@ for j = 1:popSize
             t3 = circshift(t3,1);
             t3(1) = t2(1);
             d_new = t2(1);
-            
             t2 = circshift(t2,-1); 
             t2(end) = 0;
   
@@ -71,7 +67,6 @@ for j = 1:popSize
             t1 = circshift(t1,1);
             t1(1) = t3(1);
             d_new = t3(1);
-            
             t3 = circshift(t3,-1); 
             t3(end) = 0;
 
@@ -79,7 +74,6 @@ for j = 1:popSize
             t2 = circshift(t2,1);
             t2(1) = t3(1);
             d_new = t3(1);
-            
             t3 = circshift(t3,-1); 
             t3(end) = 0;    
             
@@ -97,13 +91,14 @@ for j = 1:popSize
         tmpFitness = sum(t3);
         
         
-%         disp([num2str(d_old),'  ',num2str(d_new)])        
+        disp([num2str(d_old),'  ',num2str(d_new)])        
         display(move)
         display([t1',t2',t3']);
-        disp(['fitness: ', num2str(sum(t3)),...
-              ', bad move:', num2str(bad_move)]);
+        disp(['move: ',num2str(i+1),...
+            ', fitness: ', num2str(sum(t3)),...
+            ', bad move:', num2str(bad_move)]);
         i = i + 1 ;
     end
-    fitness(j) = sum(t3) - bad_move;
+    fitness(j) = sum(t3);%- bad_move;
 
 end
