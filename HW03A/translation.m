@@ -9,7 +9,7 @@ d_old = 8346;                % Disk moved previos turn
 d_new = 8374;                % Disk moved in present turn
 j = 1;
 tmpFit = -999;
-
+tF = 0;
 for i =0:length(individual)/3-1
     move = individual(3*i+1:3*i+3); % 3 bit string
 
@@ -30,6 +30,7 @@ for i =0:length(individual)/3-1
         elseif (sum(move == [1 0 1]) == 3) && (sum(towers(:,3)) ~= 0) 
             disp(['move: ',num2str(j),',',' 3->2'])
         end
+        tF = sum(t3);
         d_old = d_new;
         towers = [t1,t2,t3];
         display([t1,t2,t3]);
@@ -37,5 +38,11 @@ for i =0:length(individual)/3-1
         disp('----------------------')
     end
     tmpFit = sum(t3);
+end
+
+if tF == sum(1:N)
+    disp('  Success !!')
+else 
+    disp('  Unsuccess :(')
 end
 end

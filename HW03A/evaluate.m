@@ -1,4 +1,5 @@
 function [fitness] = evaluate(N, population, popSize)
+
 % Evaluates population
 fitness = zeros(popSize,1);
 for j = 1:popSize
@@ -19,10 +20,7 @@ for j = 1:popSize
        
         move = ind(3*i+1:3*i+3); % 3 bit string
         [t1,t2,t3,d_new] = move_board(move, towers, d_new);
-        
-        % Bad move if: 
-        % (1) moves 2 times the same disk.
-        % (2) the movement didnt change the board.
+   
         if (d_old == d_new) || (sum([t1(1), t2(1), t3(1)] == towers(1,:)) == 3)
            bad_move = bad_move + 1 ;
         end
